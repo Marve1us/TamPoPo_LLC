@@ -33,8 +33,9 @@ export function Footer() {
 
           <div>
             <h4 className="font-display text-white mb-6 uppercase tracking-widest">Connect</h4>
-            <p className="text-gray-400 text-sm mb-4">Austin, Texas</p>
-            <a href="mailto:hello@tampopo.ai" className="text-primary hover:text-white transition-colors">hello@tampopo.ai</a>
+            <p className="text-gray-400 text-sm mb-2">Houston, Texas</p>
+            <a href="tel:+18323508143" className="text-primary hover:text-white transition-colors">(832) 350-8143</a>
+            <p className="text-gray-500 text-xs mt-1">Tech Assistance</p>
           </div>
         </div>
         

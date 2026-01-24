@@ -49,9 +49,13 @@ export default function Contact() {
       <div className="container mx-auto px-6 max-w-2xl">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-display font-bold mb-4 neon-text">Contact Us</h1>
-          <p className="text-gray-400">
-            Have questions about our AI solutions? Send us a message.
+          <p className="text-gray-400 mb-6">
+            Have questions about our AI solutions? Send us a message or give us a call.
           </p>
+          <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/30 px-4 py-2 rounded-lg">
+            <span className="text-gray-400 text-sm">Tech Assistance:</span>
+            <a href="tel:+18323508143" className="text-primary font-bold" data-testid="link-phone">(832) 350-8143</a>
+          </div>
         </div>
 
         <div className="glass-panel p-8 rounded-xl">
@@ -115,7 +119,7 @@ export default function Contact() {
                 data-testid="button-submit"
                 type="submit" 
                 disabled={mutation.isPending}
-                className="w-full bg-primary text-black font-bold uppercase hover:bg-white transition-colors"
+                className="w-full font-bold uppercase"
               >
                 {mutation.isPending ? "Sending..." : "Send Message"}
               </Button>
