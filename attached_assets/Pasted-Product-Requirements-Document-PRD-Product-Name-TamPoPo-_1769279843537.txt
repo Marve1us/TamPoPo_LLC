@@ -1,0 +1,261 @@
+Product Requirements Document (PRD)
+
+Product Name:
+TamPoPo LLC – Texas AI Solutions Website
+
+Prepared For: Replit Web Build
+Document Version: v1.1 (Updated Company Name)
+
+1) Vision Statement
+
+Vision:
+To become the most trusted AI solutions partner for small businesses in Texas by delivering affordable, easy-to-use automation tools that help companies grow faster, operate smarter, and convert more customers online.
+
+2) Mission Statement
+
+Mission:
+TamPoPo LLC provides Texas AI solutions that empower local businesses with modern AI-driven websites, CRM systems, automated voice and chat assistants, and SEO optimization—without technical complexity—so small businesses can compete with large enterprises.
+
+3) Product Summary
+
+A clean, futuristic marketing website that showcases AI services for small businesses. The site will allow potential clients to schedule demos, view service offerings, and allow administrators to update content, pricing, and images through a secure admin portal.
+
+The site must be responsive, secure, and designed with a cyberpunk aesthetic (teal + silver).
+
+4) Goals
+Primary Goals
+
+Generate leads for AI services
+
+Allow visitors to schedule a demo
+
+Clearly explain AI offerings (SEO, CRM, Voice Chatbots, Web Pages)
+
+Enable admin content management without coding
+
+Maintain strong security best practices
+
+Non-Goals (v1)
+
+Full SaaS platform (future milestone)
+
+Customer billing portal
+
+Native mobile app
+
+5) Target Users
+Public Users
+
+Small business owners in Texas
+
+Entrepreneurs looking for automation tools
+
+Internal Users
+
+Admin (website owner)
+
+Marketing staff (future)
+
+6) Core Pages
+Public Pages
+
+/ Home
+
+/services AI services breakdown
+
+/pricing Pricing tiers
+
+/demo Schedule a Demo page
+
+/legal Legal disclaimer / terms
+
+/contact Contact form
+
+Admin Pages
+
+/admin/login Secure admin login
+
+/admin/dashboard Content editor
+
+7) Functional Requirements
+7.1 Schedule Demo Button
+
+Prominent CTA button on homepage and pricing page
+
+Options:
+
+Calendly embed
+
+Custom booking form (email + preferred time)
+
+Must send notification to admin email or Slack
+
+7.2 Admin Login & Content Management
+Admin Capabilities
+
+Login with email + password
+
+Edit website text (headlines, descriptions)
+
+Upload/change images
+
+Update pricing tables
+
+Publish changes instantly
+
+Suggested Backend
+
+Supabase Auth + database
+
+Admin-only role permissions
+
+7.3 Responsive Design
+
+Must work on:
+
+iPhone / Android
+
+Tablets
+
+Desktop browsers
+
+8) Design Requirements
+Visual Style
+
+Futuristic cyberpunk aesthetic
+
+Colors:
+
+Primary: Teal (#00FFD5 style)
+
+Secondary: Silver / Metallic Gray
+
+Dark background (black / charcoal)
+
+UX Style
+
+Clean
+
+Minimal clutter
+
+Neon glow accents
+
+Animated gradients or subtle motion
+
+9) Legal Disclaimer (Modeled After Real AI Companies)
+
+Disclaimer
+
+The information provided on this website is for general informational purposes only and does not constitute professional, legal, financial, or technical advice. While TamPoPo LLC strives to provide accurate and reliable information, we make no guarantees regarding the completeness, accuracy, or reliability of any content, services, or AI-generated outputs.
+
+Some services provided may utilize artificial intelligence technologies, which may produce inaccurate or incomplete results. Users should independently verify critical information before relying on AI-generated outputs. TamPoPo LLC is not responsible for any decisions made based on AI-generated information.
+
+In no event shall TamPoPo LLC be liable for any direct, indirect, incidental, consequential, or special damages arising out of or in connection with the use of this website or our services.
+
+By using this website, you agree to these terms and assume full responsibility for your use of the information and services provided.
+
+10) Security Requirements (Secure Coding Practices)
+Frontend
+
+HTTPS only
+
+Input validation on all forms
+
+CAPTCHA on contact/demo forms
+
+Backend
+
+Password hashing (Supabase Auth or bcrypt)
+
+Role-based access control (admin only)
+
+No API keys exposed in frontend
+
+Environment variables stored in Replit Secrets
+
+General
+
+Content Security Policy (CSP)
+
+Rate limiting on admin login
+
+Audit logs for admin changes
+
+11) Tech Stack Recommendation (Replit Friendly)
+Frontend
+
+Next.js + Tailwind CSS
+
+Framer Motion for futuristic animations
+
+Backend
+
+Supabase (Auth + database)
+
+Optional: Stripe for future billing
+
+Hosting
+
+Replit deployment or Vercel
+
+12) Milestones (Super Simple Build Order)
+Milestone 1 – Marketing Website MVP
+
+Landing page
+
+Services page
+
+Pricing page
+
+Demo scheduling button
+
+Legal disclaimer page
+
+Milestone 2 – Admin Dashboard
+
+Admin login
+
+Text editor for site content
+
+Image uploader
+
+Pricing editor
+
+Milestone 3 – Lead Automation
+
+CRM integration (HubSpot or custom)
+
+AI chatbot widget
+
+Email automation
+
+13) Success Metrics
+
+Demo bookings per week
+
+Website conversion rate
+
+Page load speed (<2 seconds)
+
+Admin content update time (<5 minutes)
+
+14) Future Expansion Ideas (Phase 2+)
+
+Customer AI dashboards
+
+AI voice receptionist demo
+
+White-labeled CRM platform
+
+Texas small business case studies
+
+BONUS: Cyberpunk Branding Copy
+
+Headline:
+AI Automation for Texas Businesses. Faster. Smarter. Scalable.
+
+Subheadline:
+TamPoPo LLC delivers AI-powered websites, CRMs, and automated assistants so your business runs 24/7—without hiring more staff.
+
+CTA Button:
+Schedule a Free Demo
