@@ -1,41 +1,50 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
+import { useMutation } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { Calendar, Clock } from "lucide-react";
-
-const formSchema = z.object({
-  name: z.string().min(2, "Name is required"),
-  email: z.string().email("Invalid email address"),
-  company: z.string().min(2, "Company name is required"),
-  date: z.string().min(1, "Preferred date is required"),
-  message: z.string().optional(),
-});
+import { insertDemoRequestSchema, type InsertDemoRequest } from "@shared/schema";
+import { apiRequest } from "@/lib/queryClient";
 
 export default function Demo() {
   const { toast } = useToast();
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<InsertDemoRequest>({
+    resolver: zodResolver(insertDemoRequestSchema),
     defaultValues: {
       name: "",
       email: "",
       company: "",
+      date: "",
       message: "",
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-    toast({
-      title: "Demo Request Received",
-      description: "We'll be in touch shortly to confirm your time slot.",
-    });
-    form.reset();
+  const mutation = useMutation({
+    mutationFn: async (data: InsertDemoRequest) => {
+      return apiRequest("POST", "/api/demo", data);
+    },
+    onSuccess: () => {
+      toast({
+        title: "Demo Request Received",
+        description: "We'll be in touch shortly to confirm your time slot.",
+      });
+      form.reset();
+    },
+    onError: () => {
+      toast({
+        title: "Error",
+        description: "Failed to submit demo request. Please try again.",
+        variant: "destructive",
+      });
+    },
+  });
+
+  function onSubmit(values: InsertDemoRequest) {
+    mutation.mutate(values);
   }
 
   return (
@@ -86,7 +95,12 @@ export default function Demo() {
                       <FormItem>
                         <FormLabel>Full Name</FormLabel>
                         <FormControl>
-                          <Input placeholder="John Doe" {...field} className="bg-black/50 border-white/10 focus:border-primary/50" />
+                          <Input 
+                            data-testid="input-name"
+                            placeholder="John Doe" 
+                            {...field} 
+                            className="bg-black/50 border-white/10 focus:border-primary/50" 
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -99,7 +113,12 @@ export default function Demo() {
                       <FormItem>
                         <FormLabel>Work Email</FormLabel>
                         <FormControl>
-                          <Input placeholder="john@company.com" {...field} className="bg-black/50 border-white/10 focus:border-primary/50" />
+                          <Input 
+                            data-testid="input-email"
+                            placeholder="john@company.com" 
+                            {...field} 
+                            className="bg-black/50 border-white/10 focus:border-primary/50" 
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -112,7 +131,12 @@ export default function Demo() {
                       <FormItem>
                         <FormLabel>Company Name</FormLabel>
                         <FormControl>
-                          <Input placeholder="Acme Inc" {...field} className="bg-black/50 border-white/10 focus:border-primary/50" />
+                          <Input 
+                            data-testid="input-company"
+                            placeholder="Acme Inc" 
+                            {...field} 
+                            className="bg-black/50 border-white/10 focus:border-primary/50" 
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -125,14 +149,24 @@ export default function Demo() {
                       <FormItem>
                         <FormLabel>Preferred Date/Time</FormLabel>
                         <FormControl>
-                          <Input type="datetime-local" {...field} className="bg-black/50 border-white/10 focus:border-primary/50" />
+                          <Input 
+                            data-testid="input-date"
+                            type="datetime-local" 
+                            {...field} 
+                            className="bg-black/50 border-white/10 focus:border-primary/50" 
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
                     )}
                   />
-                  <Button type="submit" className="w-full bg-primary text-black font-bold uppercase hover:bg-white transition-colors">
-                    Confirm Booking
+                  <Button 
+                    data-testid="button-submit"
+                    type="submit" 
+                    disabled={mutation.isPending}
+                    className="w-full bg-primary text-black font-bold uppercase hover:bg-white transition-colors"
+                  >
+                    {mutation.isPending ? "Submitting..." : "Confirm Booking"}
                   </Button>
                 </form>
               </Form>

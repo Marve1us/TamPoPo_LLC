@@ -1,22 +1,18 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
+import { useMutation } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useToast } from "@/hooks/use-toast";
-
-const formSchema = z.object({
-  name: z.string().min(2, "Name is required"),
-  email: z.string().email("Invalid email address"),
-  message: z.string().min(10, "Message must be at least 10 characters"),
-});
+import { insertContactSchema, type InsertContact } from "@shared/schema";
+import { apiRequest } from "@/lib/queryClient";
 
 export default function Contact() {
   const { toast } = useToast();
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<InsertContact>({
+    resolver: zodResolver(insertContactSchema),
     defaultValues: {
       name: "",
       email: "",
@@ -24,12 +20,28 @@ export default function Contact() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    toast({
-      title: "Message Sent",
-      description: "Thanks for reaching out! We'll reply within 24 hours.",
-    });
-    form.reset();
+  const mutation = useMutation({
+    mutationFn: async (data: InsertContact) => {
+      return apiRequest("POST", "/api/contact", data);
+    },
+    onSuccess: () => {
+      toast({
+        title: "Message Sent",
+        description: "Thanks for reaching out! We'll reply within 24 hours.",
+      });
+      form.reset();
+    },
+    onError: () => {
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again.",
+        variant: "destructive",
+      });
+    },
+  });
+
+  function onSubmit(values: InsertContact) {
+    mutation.mutate(values);
   }
 
   return (
@@ -52,7 +64,12 @@ export default function Contact() {
                   <FormItem>
                     <FormLabel>Name</FormLabel>
                     <FormControl>
-                      <Input placeholder="Your Name" {...field} className="bg-black/50 border-white/10" />
+                      <Input 
+                        data-testid="input-name"
+                        placeholder="Your Name" 
+                        {...field} 
+                        className="bg-black/50 border-white/10" 
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -65,7 +82,12 @@ export default function Contact() {
                   <FormItem>
                     <FormLabel>Email</FormLabel>
                     <FormControl>
-                      <Input placeholder="you@example.com" {...field} className="bg-black/50 border-white/10" />
+                      <Input 
+                        data-testid="input-email"
+                        placeholder="you@example.com" 
+                        {...field} 
+                        className="bg-black/50 border-white/10" 
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -78,14 +100,24 @@ export default function Contact() {
                   <FormItem>
                     <FormLabel>Message</FormLabel>
                     <FormControl>
-                      <Textarea placeholder="How can we help you?" {...field} className="bg-black/50 border-white/10 min-h-[150px]" />
+                      <Textarea 
+                        data-testid="input-message"
+                        placeholder="How can we help you?" 
+                        {...field} 
+                        className="bg-black/50 border-white/10 min-h-[150px]" 
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-              <Button type="submit" className="w-full bg-primary text-black font-bold uppercase hover:bg-white transition-colors">
-                Send Message
+              <Button 
+                data-testid="button-submit"
+                type="submit" 
+                disabled={mutation.isPending}
+                className="w-full bg-primary text-black font-bold uppercase hover:bg-white transition-colors"
+              >
+                {mutation.isPending ? "Sending..." : "Send Message"}
               </Button>
             </form>
           </Form>
