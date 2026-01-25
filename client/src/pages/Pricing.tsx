@@ -52,7 +52,7 @@ export default function Pricing() {
       ]
     },
     {
-      name: "Simple CRM",
+      name: "AI Simple CRM",
       icon: ClipboardList,
       tagline: "Your Lead Tracker",
       description: "A simple dashboard to track leads and jobs. Not Salesforce—just what you need.",
