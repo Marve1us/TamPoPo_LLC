@@ -17,15 +17,13 @@ export default function Services() {
       title: "Modern AI Websites",
       description: "Fast, secure, and beautiful websites designed to convert. Built with the latest tech stack for maximum performance.",
       features: ["SEO Optimization", "Mobile Responsive", "CMS Integration", "Analytics Dashboard"],
-      price: "Custom Quotes",
-      comingSoon: true
+      price: "Custom Quotes"
     },
     {
       title: "Intelligent CRM Systems",
       description: "Stop losing leads in spreadsheets. Our CRM solutions automate follow-ups and keep your customer data organized.",
       features: ["Email Automation", "Pipeline Management", "Lead Scoring", "Integration Ready"],
-      price: "Starting at $199/mo",
-      comingSoon: true
+      price: "Starting at $199/mo"
     }
   ];
 
