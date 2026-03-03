@@ -96,7 +96,12 @@ export default function Home() {
 
 function FeatureCard({ icon, title, description }: { icon: any, title: string, description: string }) {
   return (
-    <Card className="bg-card border-white/10 hover:border-primary/50 transition-colors group">
+    <Card className="bg-card border-white/10 transition-colors group relative overflow-hidden opacity-80">
+      <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none">
+        <div className="bg-black/70 border border-primary px-8 py-3 shadow-[0_0_20px_rgba(0,255,213,0.3)]">
+          <span className="text-primary font-display font-bold text-lg uppercase tracking-widest neon-text">Coming Soon</span>
+        </div>
+      </div>
       <CardHeader>
         <div className="mb-4 p-3 bg-primary/10 w-fit rounded-lg group-hover:bg-primary/20 transition-colors">
           {icon}
