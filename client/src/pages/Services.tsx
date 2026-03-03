@@ -10,7 +10,8 @@ export default function Services() {
       title: "AI Voice & Chat Assistants",
       description: "Replace missed calls with instant AI responses. Our bots handle scheduling, FAQs, and lead qualification 24/7.",
       features: ["Natural Language Processing", "Appointment Booking", "Multi-channel Support", "Custom Personality"],
-      price: "Starting at $299/mo"
+      price: "Starting at $299/mo",
+      comingSoon: true
     },
     {
       title: "Modern AI Websites",
@@ -48,7 +49,12 @@ export default function Services() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
             >
-              <Card className="h-full bg-card border-white/10 hover:border-primary/50 hover:shadow-[0_0_20px_rgba(0,255,213,0.1)] transition-all duration-300">
+              <Card className={`h-full bg-card border-white/10 transition-all duration-300 relative overflow-hidden ${service.comingSoon ? 'opacity-80' : 'hover:border-primary/50 hover:shadow-[0_0_20px_rgba(0,255,213,0.1)]'}`}>
+                {service.comingSoon && (
+                  <div className="absolute top-6 -right-10 z-10 rotate-45 bg-primary px-12 py-1.5 shadow-[0_0_15px_rgba(0,255,213,0.4)]">
+                    <span className="text-black font-display font-bold text-sm uppercase tracking-widest">Coming Soon</span>
+                  </div>
+                )}
                 <CardHeader>
                   <CardTitle className="text-2xl font-display text-primary mb-2">{service.title}</CardTitle>
                   <CardDescription className="text-lg text-gray-300">{service.description}</CardDescription>
@@ -64,11 +70,17 @@ export default function Services() {
                   </ul>
                   <div className="mt-auto pt-6 border-t border-white/10">
                     <p className="text-lg font-bold text-white mb-4">{service.price}</p>
-                    <Link href="/contact">
-                      <Button className="w-full bg-white/5 hover:bg-primary hover:text-black border border-white/10 text-white transition-all">
-                        Learn More
+                    {service.comingSoon ? (
+                      <Button disabled className="w-full bg-white/5 border border-white/10 text-gray-500 cursor-not-allowed" data-testid={`button-coming-soon-${index}`}>
+                        Coming Soon
                       </Button>
-                    </Link>
+                    ) : (
+                      <Link href="/contact">
+                        <Button className="w-full bg-white/5 hover:bg-primary hover:text-black border border-white/10 text-white transition-all" data-testid={`button-learn-more-${index}`}>
+                          Learn More
+                        </Button>
+                      </Link>
+                    )}
                   </div>
                 </CardContent>
               </Card>

@@ -31,8 +31,8 @@ export default function Home() {
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
           >
             <h1 className="text-5xl md:text-7xl font-display font-black mb-6 text-white tracking-tight leading-tight">
-              AI Automation for <br />
-              <span className="text-primary neon-text">Texas Businesses</span>
+              AI Automated for <br />
+              <span className="text-primary neon-text">Small Businesses</span>
             </h1>
             <p className="text-xl md:text-2xl text-gray-300 mb-10 max-w-2xl mx-auto font-light">
               Faster. Smarter. Scalable. TamPoPo LLC delivers futuristic AI tools so you can run 24/7 without hiring more staff.
