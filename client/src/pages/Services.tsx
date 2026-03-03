@@ -17,13 +17,15 @@ export default function Services() {
       title: "Modern AI Websites",
       description: "Fast, secure, and beautiful websites designed to convert. Built with the latest tech stack for maximum performance.",
       features: ["SEO Optimization", "Mobile Responsive", "CMS Integration", "Analytics Dashboard"],
-      price: "Custom Quotes"
+      price: "Custom Quotes",
+      comingSoon: true
     },
     {
       title: "Intelligent CRM Systems",
       description: "Stop losing leads in spreadsheets. Our CRM solutions automate follow-ups and keep your customer data organized.",
       features: ["Email Automation", "Pipeline Management", "Lead Scoring", "Integration Ready"],
-      price: "Starting at $199/mo"
+      price: "Starting at $199/mo",
+      comingSoon: true
     }
   ];
 
@@ -51,8 +53,10 @@ export default function Services() {
             >
               <Card className={`h-full bg-card border-white/10 transition-all duration-300 relative overflow-hidden ${service.comingSoon ? 'opacity-80' : 'hover:border-primary/50 hover:shadow-[0_0_20px_rgba(0,255,213,0.1)]'}`}>
                 {service.comingSoon && (
-                  <div className="absolute top-6 -right-10 z-10 rotate-45 bg-primary px-12 py-1.5 shadow-[0_0_15px_rgba(0,255,213,0.4)]">
-                    <span className="text-black font-display font-bold text-sm uppercase tracking-widest">Coming Soon</span>
+                  <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none">
+                    <div className="bg-black/70 border border-primary px-8 py-3 shadow-[0_0_20px_rgba(0,255,213,0.3)]">
+                      <span className="text-primary font-display font-bold text-lg uppercase tracking-widest neon-text">Coming Soon</span>
+                    </div>
                   </div>
                 )}
                 <CardHeader>
