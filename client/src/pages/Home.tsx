@@ -119,4 +119,4 @@ function FeatureCard({ icon, title, description, comingSoon }: { icon: any, titl
     </Card>
   );
 }
-.
+
