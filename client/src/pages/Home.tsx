@@ -31,8 +31,8 @@ export default function Home() {
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
           >
             <h1 className="text-5xl md:text-7xl font-display font-black mb-6 text-white tracking-tight leading-tight">
-              AI Automation for <br />
-              <span className="text-primary neon-text">Texas Businesses</span>
+              AI Automated for <br />
+              <span className="text-primary neon-text">Small Businesses</span>
             </h1>
             <p className="text-xl md:text-2xl text-gray-300 mb-10 max-w-2xl mx-auto font-light">
               Faster. Smarter. Scalable. TamPoPo LLC delivers futuristic AI tools so you can run 24/7 without hiring more staff.
@@ -61,6 +61,7 @@ export default function Home() {
               icon={<Bot className="w-10 h-10 text-primary" />}
               title="24/7 AI Agents"
               description="Automated voice and chat assistants that never sleep, handling customer inquiries instantly."
+              comingSoon
             />
             <FeatureCard 
               icon={<Globe className="w-10 h-10 text-primary" />}
@@ -94,9 +95,16 @@ export default function Home() {
   );
 }
 
-function FeatureCard({ icon, title, description }: { icon: any, title: string, description: string }) {
+function FeatureCard({ icon, title, description, comingSoon }: { icon: any, title: string, description: string, comingSoon?: boolean }) {
   return (
-    <Card className="bg-card border-white/10 hover:border-primary/50 transition-colors group">
+    <Card className={`bg-card border-white/10 transition-colors group relative overflow-hidden ${comingSoon ? 'opacity-80' : 'hover:border-primary/50'}`}>
+      {comingSoon && (
+        <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none">
+          <div className="bg-black/70 border border-primary px-8 py-3 shadow-[0_0_20px_rgba(0,255,213,0.3)]">
+            <span className="text-primary font-display font-bold text-lg uppercase tracking-widest neon-text">Coming Soon</span>
+          </div>
+        </div>
+      )}
       <CardHeader>
         <div className="mb-4 p-3 bg-primary/10 w-fit rounded-lg group-hover:bg-primary/20 transition-colors">
           {icon}
@@ -111,3 +119,4 @@ function FeatureCard({ icon, title, description }: { icon: any, title: string, d
     </Card>
   );
 }
+
