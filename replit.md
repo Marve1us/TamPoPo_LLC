@@ -27,6 +27,8 @@ Preferred communication style: Simple, everyday language.
 - **API Design**: RESTful endpoints under `/api` prefix
 - **Validation**: Zod schemas shared between frontend and backend via drizzle-zod
 - **Storage**: Currently uses in-memory storage (MemStorage class) with PostgreSQL schema ready for migration
+- **Rate Limiting**: `express-rate-limit` — 100 req/15min general, 5 req/15min on `/api` endpoints
+- **Logging**: Sanitized request logs (method, path, status, duration only — no PII)
 
 ### Database Layer
 - **ORM**: Drizzle ORM with PostgreSQL dialect
